@@ -28,22 +28,22 @@ export function fetchDataDone (result) {
 };
 
 // Reducer
-export function theReducer(initialState, action= {}) {
+export function theReducer(state = initialState, action = {}) {
     switch (action.type) {
         case DATA_LOADING:
             return {
-                ...initialState,
+                ...state,
                 loading: true,
                 items: []
             };
         case DATA_RESULT:
             return {
-                ...initialState,
+                ...state,
                 loading: false,
                 items: action.payload
             };
         default:
-            return initialState;
+            return state;
     }
 };
 
@@ -52,7 +52,7 @@ export const reducers = combineReducers({
 });
 
 // Store
-export function configureStore() {
+export function configureStore(initialState) {
     const store = createStore(reducers, initialState);
     return store;
 };
